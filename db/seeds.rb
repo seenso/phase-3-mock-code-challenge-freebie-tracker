@@ -1,3 +1,7 @@
+Company.destroy_all
+Dev.destroy_all
+FreebieCompany.destroy_all
+
 puts "Creating companies..."
 c1 = Company.create(name: "Google", founding_year: 1998)
 c2 = Company.create(name: "Facebook", founding_year: 2004)
@@ -22,5 +26,14 @@ Freebie.create(item_name: "pen", value: 5, company_id: c1.id, dev_id: d1.id)
 Freebie.create(item_name: "notebook", value: 12, company_id: c2.id, dev_id: d2.id)
 Freebie.create(item_name: "plaque", value: 15, company_id: c3.id, dev_id: d3.id)
 Freebie.create(item_name: "gift card", value: 25, company_id: c4.id, dev_id: d4.id)
+
+10.times do 
+  Freebie.create(
+    dev_id: Dev.all.sample.id,
+    company_id: Company.all.sample.id,
+    item_name: Faker::Vehicle.make,
+    value: (rand * 100000).to_i
+  )
+end
 
 puts "Seeding done!"
